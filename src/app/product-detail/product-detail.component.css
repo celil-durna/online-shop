@@ -1,0 +1,284 @@
+
+.product-detail-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6rem;
+  padding: 2rem;
+  max-width: 1350px;
+  margin: 5rem auto;
+  margin-top: 0rem;
+}
+
+.product-image-section {
+  flex: 1 1 40%;
+  text-align: center;
+  position: relative; 
+}
+
+.product-image {
+  width: 500px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.product-info-section {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.product-brand {
+  font-size: 1.3rem;
+  color: #777;
+  margin-bottom: 0;
+}
+
+.product-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.product-price {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #2a7ae2;
+  background-color: #eff6ff;
+  padding: 0.3rem 0.7rem;
+  width: fit-content;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px #b0cde5;
+  margin-bottom: 1rem;
+}
+
+.product-color label,
+.product-size label,
+.product-description label {
+  font-weight: 500;
+  color: #444;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.product-color,
+.product-size,
+.product-description {
+  margin-bottom: 1.2rem;
+}
+
+.horizontal-divider {
+  height: 1px;
+  background-color: #ccc;
+  margin-top: 0rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+/* color swatches */
+.color-swatch {
+  width: 40px;
+  height: 40px;
+  background-color: #aaa;
+  display: inline-block;
+  margin-right: 1.2rem;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.color-swatch:hover {
+  transform: scale(1.1);
+}
+
+.color-swatch.selected {
+  box-shadow: 0 0 0 2px white, 0 0 0 3.5px #000000;
+  transform: scale(1.1);
+}
+
+/* product size */
+.product-size .size-badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 1.2rem;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.product-size .size-badge:hover {
+  background-color: #e0e0e0;
+   transform: scale(1.1);
+}
+
+.size-badge.selected {
+  box-shadow: 0 0 0 2px white, 0 0 0 3.5px #000000;
+  transform: scale(1.1);
+}
+
+.size-badge.disabled,
+.color-swatch.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Add-to-Cart Button*/
+
+.add-to-cart-button {
+  background-color: #2a7ae2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.6rem 3.5rem;
+  width: fit-content;
+  transition: background-color 0.3s ease;
+  margin-top: -0.7rem;
+}
+
+.add-to-cart-button:hover {
+  background-color: #1a5bb8;
+}
+
+/* Deaktiviert: ohne Pointer, ohne Hoverfarbe */
+.add-to-cart-button.disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: default;
+  pointer-events: auto; /* ← wichtig, sonst wird click nicht ausgelöst! */
+}
+
+.add-to-cart-button.disabled:hover {
+  background-color: #ccc; /* kein Hover-Effekt */
+}
+
+.add-feedback {
+  margin-top: 0.5rem;
+  color: green;
+  font-weight: 500;
+}
+
+.warning-text {
+  color: red;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+
+
+/* go-back link */
+.product-detail-wrapper {
+  max-width: 1350px;
+  margin: 0 auto;
+  margin-top: 6rem;
+  padding: 0 2rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin: 1rem 2.7rem;
+  font-size: 1rem;
+  color: black;
+  background: none;
+  border: none;
+  cursor: pointer; /* 👈 this is what you need */
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: #1a5bb8;
+  text-decoration: underline;
+}
+
+/* Zoom button styling */
+.zoom-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zoom-button:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal content */
+.modal-content {
+  position: relative;
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent; 
+}
+
+.zoomed-image {
+  max-width: 120%;
+  max-height: 120vh;
+  border-radius: 8px;
+  object-fit: contain;
+  background: transparent;
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #333;
+  padding-right: 3rem;
+}
+
+.modal-close:hover {
+  color: #000;
+}
+

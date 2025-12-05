@@ -1,0 +1,531 @@
+<div class="wizard-container">
+
+  <!-- Wizard Header -->
+  <div class="wizard-steps">
+    <div [class.active]="currentStep === 1" [class.done]="completeStep1">1. Address</div>
+    <div [class.active]="currentStep === 2" [class.done]="completeStep2">2. Delivery & Payment</div>
+    <div [class.active]="currentStep === 3">3. Summary</div>
+  </div>
+
+  <div class="wizard-body">
+
+
+
+    <!-- Step 1: Address --------------------------------------------------------------------->
+    <ng-container *ngIf="currentStep === 1">
+
+      <div class="title-container">
+        <h2>Shipping Address</h2>
+      </div>
+
+      <div class="input-hint-container">
+        <small class="input-hint">Pre-filled based on your saved account information</small>
+      </div>
+
+      <form [formGroup]="addressForm">
+
+        <!-- First and Last Name -->
+        <div class="row">
+    
+          <!-- First Name -->
+          <div class="row-input">
+            <p-floatLabel>
+              <input 
+              pInputText 
+              id="firstName" 
+              formControlName="firstName"
+              [ngClass]="{ 'invalid-field': addressForm.get('firstName')?.invalid}"
+              >
+              <label 
+              for="firstName" 
+              [ngClass]="{ 'invalid-label': addressForm.get('firstName')?.invalid}"
+              >
+              First name
+              </label>
+            </p-floatLabel>
+    
+            <!-- error message -->
+            <div *ngIf="addressForm.get('firstName')?.invalid && addressForm.get('firstName')?.touched" class="error-message">
+              <small>Please enter your first name</small>
+            </div>
+          </div>
+    
+          <!-- Last Name -->
+          <div class="row-input">
+            <p-floatLabel>
+              <input 
+              pInputText 
+              id="lastName" 
+              formControlName="lastName"
+              [ngClass]="{ 'invalid-field': addressForm.get('lastName')?.invalid}"
+              >
+              <label 
+              for="lastName"
+              [ngClass]="{ 'invalid-label': addressForm.get('lastName')?.invalid}"
+              >
+              Last name
+              </label>
+            </p-floatLabel>
+
+            <!-- error message -->
+            <div *ngIf="addressForm.get('lastName')?.invalid && addressForm.get('lastName')?.touched" class="error-message">
+              <small>Please enter your last name</small>
+            </div>
+          </div>
+
+        </div>
+    
+        <!-- Street and Number -->
+        <div class="row">
+
+          <!-- Street -->
+          <div class="row-input">
+            <p-floatLabel>
+              <input 
+              pInputText 
+              id="street" 
+              formControlName="street"
+              [ngClass]="{ 'invalid-field': addressForm.get('street')?.invalid }"
+              >
+              <label 
+              for="street"
+              [ngClass]="{ 'invalid-label': addressForm.get('street')?.invalid }"
+              >
+              Street
+              </label>
+            </p-floatLabel>
+
+            <!-- error message -->
+            <div *ngIf="addressForm.get('street')?.invalid && addressForm.get('street')?.touched" class="error-message">
+              <small>Please enter your street</small>
+            </div>
+          </div>
+    
+          <!-- Number -->
+          <div class="row-input">
+            <p-floatLabel>
+              <input 
+              pInputText  
+              id="number" 
+              formControlName="number"
+              [ngClass]="{ 'invalid-field': addressForm.get('number')?.invalid }"
+              >
+              <label 
+              for="number"
+              [ngClass]="{ 'invalid-label': addressForm.get('number')?.invalid }"
+              >
+              No.
+              </label>
+            </p-floatLabel>
+
+            <!-- error message -->
+            <div *ngIf="addressForm.get('number')?.invalid && addressForm.get('number')?.touched" class="error-message">
+              <small *ngIf="addressForm.get('number')?.errors?.['required']">
+                Please enter your street number
+              </small>
+              <small *ngIf="addressForm.get('number')?.errors?.['pattern']">
+                Street number must be a number
+              </small>
+            </div> 
+          </div>
+
+        </div>
+    
+        <!-- Postal Code and City -->
+        <div class="row">
+
+          <!-- Postal Code -->
+          <div class="row-input">
+            <p-floatLabel>
+              <input 
+              pInputText 
+              id="postalCode" 
+              formControlName="postalCode"
+              [ngClass]="{ 'invalid-field': addressForm.get('postalCode')?.invalid }"
+              >
+              <label 
+              for="postalCode"
+              [ngClass]="{ 'invalid-label': addressForm.get('postalCode')?.invalid }"
+              >
+              Postal Code
+              </label>
+            </p-floatLabel>
+
+            <!-- error message -->
+            <div *ngIf="addressForm.get('postalCode')?.invalid && addressForm.get('postalCode')?.touched" class="error-message">
+              <small *ngIf="addressForm.get('postalCode')?.errors?.['required']">
+                Please enter your postal code
+              </small>
+              <small *ngIf="addressForm.get('postalCode')?.errors?.['pattern']">
+                Postal code must be a number
+              </small>
+            </div>
+          </div>
+    
+          <!-- City -->
+          <div class="row-input">
+            <p-floatLabel>
+              <input 
+              pInputText 
+              id="city" 
+              formControlName="city"
+              [ngClass]="{ 'invalid-field': addressForm.get('city')?.invalid }"
+              >
+              <label 
+              for="city"
+              [ngClass]="{ 'invalid-label': addressForm.get('city')?.invalid }"
+              >
+              City
+              </label>
+            </p-floatLabel>
+
+            <!-- error message -->
+            <div *ngIf="addressForm.get('city')?.invalid && addressForm.get('city')?.touched" class="error-message">
+              <small>Please enter your city</small>
+            </div>
+          </div>
+
+        </div>
+    
+        <!-- Country -->
+        <div class="row-country">
+          <p-floatLabel>
+            <p-dropdown
+            inputId="country"
+            formControlName="country"
+            [options]="countries"
+            optionLabel="name"
+            [showClear]="true"
+            [ngClass]="{ 'invalid-field': addressForm.get('country')?.invalid }"
+            >
+            </p-dropdown>
+            <label 
+            for="country" 
+            [ngClass]="{ 'invalid-label': addressForm.get('country')?.invalid }"
+            >
+            Country
+            </label>
+          </p-floatLabel>
+
+          <!-- error message -->
+          <div *ngIf="addressForm.get('country')?.invalid && addressForm.get('country')?.touched" class="error-message">
+            <small>Please enter your country</small>
+          </div>
+        </div>
+    
+        <!-- buttons -->
+        <div class="wizard-button-group">
+
+          <div class="left-buttons">
+             <button class="cancel-button" type="button" (click)="cancel()">Cancel</button>
+          </div>
+  
+          <div class="right-buttons">
+            <button class="next-button" type="button" (click)="completeAddressForm()">Next</button>
+          </div>
+
+        </div>
+    
+      </form>
+
+      <!-- error message -->
+      <p *ngIf="showFormWarning && addressForm.invalid" class="form-warning">
+        Please correct the highlighted fields before continuing
+      </p>
+     
+    </ng-container>
+
+
+
+    <!-- Step 2: Delivery & Payment --------------------------------------------------------------------->
+    <ng-container *ngIf="currentStep === 2">
+
+      <div class="title-container">
+        <h2>Delivery & Payment</h2>
+      </div>
+    
+      <form #paymentForm="ngForm">
+    
+
+        <!-- Delivery Options -->
+        <div class="options-title-container">
+          1. Delivery Options
+        </div>
+
+        <div class="option-list">
+    
+          <label 
+             *ngFor="let option of deliveryOptions" 
+             class="option-box" 
+             [for]="option.id"
+          >
+
+            <div class="option-box-input">
+
+              <div class="left">
+
+                <div class="radio-button">
+                  <input 
+                    type="radio"
+                    [id]="option.id"
+                    name="delivery"
+                    [value]="option.id"
+                    [(ngModel)]="delivery"
+                    required
+                    #deliveryRef="ngModel"
+                  >
+                </div>
+          
+                <div class="icon">
+                  <i [class]="option.icon"></i>
+                </div>
+          
+                <div class="option-time">
+                  <div class="option"><strong>{{ option.name }}</strong></div>
+                  <div class="time"><a>{{ option.time }}</a></div>
+                </div>
+
+              </div>
+          
+              <div class="right">
+                <a *ngIf="option.price > 0">${{ option.price }}</a>
+                <a *ngIf="option.price === 0">free</a>
+              </div>
+
+            </div>
+
+          </label>
+
+        </div>
+    
+
+        <!-- Payment Options -->
+        <div class="options-title-container">
+          2. Payment Options
+        </div>
+
+        <div class="option-list">
+
+          <label 
+            *ngFor="let option of paymentOptions" 
+            class="option-box" 
+            [for]="option.id"
+          >
+
+            <div class="option-box-input">
+          
+              <div class="left">
+
+                <div class="radio-button">
+                  <input 
+                    type="radio" 
+                    [id]="option.id" 
+                    name="payment" 
+                    [value]="option.id" 
+                    [(ngModel)]="payment" 
+                    required 
+                    #paymentRef="ngModel"
+                  >
+                </div>
+            
+                <div class="icon">
+                  <i [class]="option.icon"></i>
+                </div>
+            
+                <div class="option">
+                  <strong>{{ option.name }}</strong>
+                </div>
+
+              </div>
+          
+            </div>
+
+          </label>
+
+        </div>
+    
+        <!-- buttons -->
+        <div class="wizard-button-group">
+
+          <div class="left-buttons">
+            <button class="cancel-button" type="button" (click)="cancel()">Cancel</button>
+          </div>
+    
+          <div class="right-buttons">
+            <button class="back-button" type="button" (click)="goBack()">Back</button>
+            <button class="next-button" type="button" (click)="completePaymentForm(paymentForm.valid || false)">Next</button>
+          </div>
+
+        </div>
+
+      </form>
+    
+      <!-- error message -->
+      <p *ngIf="showPaymentWarning && !paymentForm.valid" class="form-warning">
+        Please select a delivery and payment option before continuing.
+      </p>
+
+    </ng-container>
+
+
+    <!-- Step 3: Summary --------------------------------------------------------------------->
+    <ng-container *ngIf="currentStep === 3">
+
+      <div class="title-container">
+        <h2>Order Summary</h2>
+      </div>
+
+      <!-- Address Summary -->
+      <div class="summary-box">
+        <div class="summary-box-input">
+          <div>
+            <div class="summary-title">Shipping Address</div>
+            <div>{{ addressForm.value.firstName }} {{ addressForm.value.lastName }}</div>
+            <div>{{ addressForm.value.street }} {{ addressForm.value.number }}</div>
+            <div>{{ addressForm.value.postalCode }} {{ addressForm.value.city }}</div>
+            <div>{{ addressForm.value.country?.name }}</div>
+          </div>
+      
+          <div class="right">
+              <button 
+                pButton 
+                icon="pi pi-file-edit" 
+                label="Edit"
+                class="edit-button" 
+                (click)="goToStep(1)" 
+                severity="secondary" 
+                text="true"
+              >
+              </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Delivery Summary -->
+      <ng-container *ngIf="getDeliveryOption() as deliveryOption">
+        <div class="summary-box">
+          <div class="summary-box-input">
+            <div>
+              <div class="summary-title">Delivery Option</div>
+              <div>{{ deliveryOption.name }} ({{ deliveryOption.time }})</div>
+              <div>
+                <div *ngIf="deliveryOption.price > 0">
+                  Price: ${{ deliveryOption.price }}
+                </div>
+                <div *ngIf="deliveryOption.price === 0">
+                  Price: Free
+                </div>
+              </div>
+            </div>
+
+            <div class="right">
+              <button 
+                pButton 
+                icon="pi pi-file-edit" 
+                label="Edit"
+                class="edit-button" 
+                (click)="goToStep(2)" 
+                severity="secondary" 
+                text="true"
+              >
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+        
+      <!-- Payment Summary -->
+      <ng-container *ngIf="getPaymentOption() as paymentOption">
+        <div class="summary-box">
+          <div class="summary-box-input">
+            <div>
+              <div class="summary-title">Payment Option</div>
+              <div>{{ paymentOption.name }}</div>
+            </div>
+
+            <div class="right">
+              <button 
+                pButton 
+                icon="pi pi-file-edit" 
+                label="Edit"
+                class="edit-button" 
+                (click)="goToStep(2)" 
+                severity="secondary" 
+                text="true"
+              >
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      
+      <!-- Order Items with Total Price Summary -->
+      <div class="summary-items-box">
+      
+        <div class="summary-item" *ngFor="let item of cartItems">
+  
+          <ng-container *ngIf="getProduct(item.id) as product">
+  
+            <div>
+              <img [src]="getProductImage(item.color)" alt="Product image" class="summary-item-image">
+            </div>
+        
+            <div class="summary-item-middle">
+  
+              <div class="summary-item-name-price">
+                <div class="summary-item-name">{{ product.name }}</div>
+                <div class="summary-item-price">
+                   ${{ (product.price * item.quantity) }}
+                </div>
+              </div>
+              
+              <div class="summary-item-info">Size: {{ item.size }}</div>
+              <div class="summary-item-info">Quantity: {{ item.quantity }}</div>
+            </div>
+        
+            
+  
+          </ng-container>
+  
+        </div>
+         
+        <div class="summary-divider"></div>
+  
+        <div class="summary-row-subtotal">
+          <span>Subtotal:</span>
+          <div>${{ getTotalPrice().toFixed(2) }}</div>
+        </div>
+  
+        <div class="summary-row">
+          <span>Shipping:</span>
+          <div>${{ getDeliveryOption()?.price }}</div>
+        </div>
+        
+        <div class="summary-divider"></div>
+        
+        <div class="summary-row">
+          <span>Total:</span>
+          <strong>${{ (getTotalPrice() + (getDeliveryOption()?.price ?? 0)).toFixed(2) }}</strong>
+        </div>
+
+      </div>
+
+
+      <!-- Confirm Button -->
+      <div class="wizard-button-group">
+        <div class="left-buttons">
+          <button class="cancel-button" type="button" (click)="cancel()">Cancel</button>
+        </div>
+    
+        <div class="right-buttons">
+          <button class="back-button" type="button" (click)="goBack()">Back</button>
+          <button [routerLink]="['/success']"  class="next-button" type="button" (click)="submitOrder()">Confirm Purchase</button>
+        </div>
+    
+      </div>
+
+    </ng-container>
+
+  </div>
+
+</div>

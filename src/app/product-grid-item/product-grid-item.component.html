@@ -1,0 +1,14 @@
+<div 
+  class="product-grid-item"
+  [routerLink]="['/products', product.id]" 
+  style="cursor: pointer;"
+>
+  <img class="grid-image" [src]="imagePath" [alt]="product.name">
+  <div class="horizontal-divider"></div>
+
+  <div class="grid-info">
+    <p class="grid-brand">{{ product.brand }}</p>
+    <h3 class="grid-name">{{ product.name }}</h3>
+    <p class="grid-price">{{ product.price | currency }}</p>
+  </div>
+</div>

@@ -1,0 +1,207 @@
+/* IMPORTANT: 'overflow-y:scroll;' or 'overflow-y: auto;' was not necessary, even though the entire register 
+               page did not fit on the screen, because otherwise two scrollbars appeared.
+               That means, even without it, the page was already automatically scrollable on our laptops (all Windows)." 
+*/  
+
+.center-container {
+  display:flex;
+  justify-content: center;
+  padding-bottom: 3rem; /*48px*/
+  /*overflow-y:scroll;*/   
+}
+
+/*
+form {
+  max-width: 800px;
+}
+*/
+
+/* set standard width for all pInputText inputs and p-dropdown for consistent layout */
+input[pInputText],
+p-dropdown {
+  width: 300px;
+}
+
+/* adjust width of p-calendar input to match pInputText fields because of the additional calendar icon */
+/* we need to use ::ng-deep because p-calendar's input is inside a "Shadow DOM" and would otherwise not be reachable
+   !important is needed to override PrimeNG's internal styles. */
+::ng-deep p-calendar input {
+  width: 260px !important;
+}
+
+.block {
+  margin-top: 3rem; /*48px*/
+}
+
+.gender {
+  display: flex;
+  justify-content: space-between; /* distributes evenly with spacing */
+  margin-top: 1.3rem;
+}
+
+.gender div { /* for every div container in gender div container */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#otherGender {
+  width: 170px;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem; /* now we are able to see the label above the input field while writing into it*/
+}
+
+.row-input {
+  flex: 1; /* evenly distributed */
+}
+
+small {
+  color: #666;
+}
+
+.description {
+  margin-top: 2px;
+}
+
+.birth-date {
+  margin-top: 2rem;
+}
+
+/* here space for later adjusting color of border of birthdate field while writing */
+
+
+
+
+#number {
+  width: 80px;
+}
+
+.country {
+  margin-top: 2rem;
+}
+
+
+/* suppress float at start when no value is selected, so it looks like the other input fields */
+p-floatLabel label[for="country"].suppress-float {
+  top: 50%; /* move label 50% down from the top (relative to its container) */
+  transform: translateY(-50%); /* pull the label back up by 50% of its own height to perfectly center it vertically */
+  font-size: 1rem;
+  font-weight: 500; /* make the text slightly thicker, so it looks like the other labels (-> p-float-label) */
+  pointer-events: none;
+}
+
+/* normal float behavior (from PrimeNG), so it looks like the other input fields */
+p-floatLabel label[for="country"] {
+  transition: 0.2s ease all;
+}
+
+/* here space for later adjusting color of border of country field while writing */
+
+
+
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem; /*32px*/
+}
+
+#register-button {
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  max-width: 300px;
+  width: 100%;  
+
+  /* the following css properties are not strictly required, but added for extra safety (-> it looks the same without them) */
+  background-color: #3b82f6; 
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+
+
+/* FOR ERROR MESSAGES */
+.error-message small {
+  color: red;
+  font-size: 0.8rem;
+}
+
+
+
+/*
+for VERY wide screens (3340px) 
+*/
+@media (min-width: 161rem) {
+
+  /* set standard width for all pInputText inputs and p-dropdown for consistent layout (for very wide screens) */
+  input[pInputText],
+  p-dropdown {
+    width: 500px;
+  }
+  
+  #otherGender {
+    width: 250px;
+  }
+  
+  #number {
+    width: 140px;
+  }
+
+}
+
+
+
+/*
+for narrow widths (375px iphone SE) 
+*/
+@media (max-width: 750px) {
+
+  .center-container form {
+    padding: 0 1rem; 
+  }
+
+  .row {
+    margin-bottom: 3rem; 
+    flex-direction: column;
+    gap: 2rem; 
+  }
+
+  input[pInputText],
+    p-dropdown {
+      width: 100%;
+  }
+
+  .gender {
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  #otherGender {
+    width: 100%;
+  }
+
+  :host ::ng-deep .p-datepicker {
+    width: 100%;
+  }
+  
+  /* easier to touch on mobile */
+  #number {
+    width: 100%; 
+  }
+
+  .country {
+    margin-bottom: 0.5rem;
+  }
+
+  #register-button {
+    max-width: none;
+    width: 100%;
+  }
+  
+}

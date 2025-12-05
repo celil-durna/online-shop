@@ -1,0 +1,91 @@
+<nav>
+  <div class="menu">
+    <a href="/" id="logo">
+      <img id="logo-img" src="./assets/logo.png" />
+      <span id="title"> Day One </span>
+    </a>
+    <div class="menu-entries">
+
+      <!-- login button for desktop view -->
+      <p-button
+        class="desktop-only"
+        [routerLink]="['login']"
+        severity="primary"
+        variant="outlined"
+        icon="pi pi-sign-in"
+        label="Log in"
+      >
+      </p-button>
+
+      <!-- login button for mobile view -->
+      <p-button
+        class="mobile-only"
+        [routerLink]="['login']"
+        variant="outlined"
+        icon="pi pi-sign-in"
+      >
+      </p-button>      
+
+
+      <!-- register button added for assignment 1 -->
+
+      <!-- register button for desktop view -->
+      <p-button
+        class="desktop-only"
+        [routerLink]="['register']"
+        severity="primary" 
+        variant="outlined"
+        icon="pi pi-user-plus"
+        label="Register"
+      >
+      </p-button>
+
+      <!-- register button for mobile view -->
+      <p-button
+        class="mobile-only"
+        [routerLink]="['register']"
+        variant="outlined"
+        icon="pi pi-user-plus"
+      >
+      </p-button>
+
+      <!-- cart button with cart badge added for assignment 7 -->
+
+      <!-- cart button with cart badge for desktop view -->
+      <p-button
+        class="desktop-only"
+        [routerLink]="['/cart']"
+        severity="primary"
+        icon="pi pi-shopping-cart"
+        label="Cart"
+        styleClass="p-button-outlined"
+      />
+
+      <!-- cart button with cart badge for mobile view -->
+      <p-button
+        class="mobile-only"
+        [routerLink]="['/cart']"
+        severity="primary"
+        icon="pi pi-shopping-cart"
+        styleClass="p-button-outlined"
+      />
+
+      <!-- badge for desktop view -->
+      <div
+        class="cart-badge-desktop"
+        [ngClass]="{ hidden: cartItemCount === 0, 'desktop-only': true }"
+      >
+        {{ cartItemCount }}
+      </div>
+
+      <!-- badge for mobile view (adjust position a little bit) -->
+      <div
+        class="cart-badge-mobile"
+        [ngClass]="{ invisible: cartItemCount === 0, 'mobile-only': true }"
+      >
+        {{ cartItemCount }}
+      </div>
+
+    </div>
+  </div>
+</nav>

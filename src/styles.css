@@ -1,0 +1,62 @@
+@import 'primeicons/primeicons.css';
+@import 'primeflex/primeflex.css';
+
+/*
+Some global styling that is also accessible in component CSS.
+Useful for CSS that is re-used across components
+*/
+
+:root {
+  /* Define Inter as UI font for the shop. Include fallbacks and Emoji fonts. */
+  font-family:
+    'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  /*
+  You can define CSS variables with this syntax. See https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascading_variables/Using_CSS_custom_properties 
+  Here, we use a PrimeNG variable (indicated by the 'p-' prefix) for invalid form entries as the value
+  */
+  --error-color: var(--p-form-field-invalid-placeholder-color);
+}
+
+body {
+  margin: 0;
+  background-color: var(--p-content-background);
+}
+
+/* Center main content area */
+main {
+  width: 100%;
+  /* Setting the (left and right) margins of a container to auto can center it whitout wrapping it in another container */
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+
+/* Prevent underlining when complex content (e.g. images) is inside <a> tag */
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/* Setup Inter font. Distributed with the template to have consistent look for students and teacher machines. */
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: 'InterVariable', sans-serif;
+    font-optical-sizing: auto;
+  }
+}
+
+@font-face {
+  font-family: InterVariable;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('assets/fonts/InterVariable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: InterVariable;
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('assets/fonts/InterVariable-Italic.woff2') format('woff2');
+}

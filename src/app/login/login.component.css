@@ -1,0 +1,58 @@
+.center-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 5rem; /*80px*/
+}
+
+/* 
+old solution:
+
+form {
+  width: 100%;
+  max-width: 300px;
+}
+
+input[pInputText] {
+  width: 100%;
+}
+*/
+
+/* set standard width for all pInputText inputs (for consistent layout) */
+input[pInputText] {
+  width: 300px;
+}
+
+.login-title {
+  text-align: center;
+}
+
+.input-block {
+  margin-top: 2.3rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.3rem;
+}
+
+/* button with default width */
+#login-button {
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
+
+  /* the following css properties are not strictly required, but added for extra safety (-> it looks the same without them) */
+  background-color: #3b82f6;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+
+
+/* FOR ERROR MESSAGES */
+.error-message small {
+  color: red;
+  font-size: 0.8rem;
+}

@@ -1,0 +1,9 @@
+<div class="product-card" [routerLink]="['/products', product.id]" style="cursor: pointer;">
+  <img class="product-image" [src]="imagePath" [alt]="product.name">
+  <div class="vertical-divider"></div>
+  <div class="product-info">
+    <p class="product-brand">{{ product.brand }}</p>
+    <h3 class="product-name">{{ product.name }}</h3>
+    <p class="product-price">{{ product.price | currency }}</p>
+  </div>
+</div>

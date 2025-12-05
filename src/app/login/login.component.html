@@ -1,0 +1,55 @@
+<div class="center-container">
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+
+    <!-- Log In Title -->
+    <div class="login-title">
+      <h2>Log In</h2>
+    </div>
+
+
+    <!-- Email -->
+    <div class="input-block">
+      <p-floatLabel>
+        <input pInputText type="email" id="email" formControlName="email" required />
+        <label for="email">Email</label>
+      </p-floatLabel>
+
+      <!-- error message -->
+      <div *ngIf="loginForm.get('email')!.invalid && loginForm.get('email')!.touched" class="error-message">
+        <small *ngIf="loginForm.get('email')!.errors?.['required']">Please enter your email</small>
+        <small *ngIf="loginForm.get('email')!.errors?.['email']">Please enter a valid email address</small>
+      </div>
+    </div>
+
+
+    <!-- Password -->
+    <div class="input-block">
+      <p-floatLabel>
+        <input pInputText type="password" id="password" formControlName="password" required />
+        <label for="password">Password</label>
+      </p-floatLabel>
+
+      <!-- error message -->
+      <div *ngIf="loginForm.get('password')!.invalid && loginForm.get('password')!.touched" class="error-message">
+        <small *ngIf="loginForm.get('password')!.errors?.['required']">Please enter your password</small>
+      </div>
+    </div>
+
+
+    <!-- Button -->
+    <div class="button-container">
+      <button
+        pButton
+        pRipple
+        type="submit"
+        id="login-button"
+        label="Log In"
+      >
+      </button>
+    </div>
+
+  </form>
+
+</div>

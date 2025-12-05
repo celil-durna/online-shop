@@ -1,0 +1,172 @@
+<div class="shop-container">
+
+
+  <!-- Sidebar -->
+  <aside class="filter-sidebar" [class.mobile-hidden]="!filtersVisible">
+    <form (ngSubmit)="applyFiltersFromSidebar()" #filterForm="ngForm">
+      <h3 class="filter-heading">Filters</h3>
+
+      <!-- Price Filter -->
+      <div class="filter-section">
+        <div class="price-slider-wrapper">
+          <label class="filter-label">Max Price: {{ maxPrice }} $</label>
+          <input type="range" min="0" [max]="priceRange" [(ngModel)]="maxPrice" name="maxPrice"
+            (input)="onPriceChange()">
+        </div>
+      </div>
+
+      <!-- Color Filter -->
+      <div class="filter-section">
+        <label class="filter-label">Color</label>
+        <div class="color-swatch-grid">
+          <div *ngFor="let color of colorList" class="color-swatch" [style.backgroundColor]="color.color_hex"
+            [ngClass]="{ 'selected': colorsFiltered.includes(color.color_name) }"
+            (click)="toggleColor(color.color_name)">
+          </div>
+        </div>
+      </div>
+
+      <!-- Type Filter -->
+      <div class="filter-section">
+        <label class="filter-label">Product Type</label>
+        <div *ngFor="let type of typeList">
+          <label class="checkbox-label">
+            <input type="checkbox" [value]="type" (change)="onTypeChange($event)"
+              [checked]="typesFiltered.includes(type)">
+            {{ type }}
+          </label>
+        </div>
+      </div>
+
+      <!-- Brand Filter -->
+      <div class="filter-section">
+        <label class="filter-label">Brand</label>
+        <div *ngFor="let brand of brandList">
+          <label class="checkbox-label">
+            <input type="checkbox" [value]="brand" (change)="onBrandChange($event)"
+              [checked]="brandsFiltered.includes(brand)">
+            <span>{{ brand }}</span>
+          </label>
+        </div>
+      </div>
+
+    </form>
+
+    <div class="apply-filter-container" *ngIf="isMobile">
+      <button type="button" class="apply-filter-button" (click)="applyFiltersFromSidebar()">Close</button>
+    </div>
+
+  </aside>
+
+  <hr *ngIf="isMobile && filtersVisible" class="mobile-divider" />
+
+
+  <!-- Main Product Area B -->
+  <div class="product-list-container">
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search products..." [(ngModel)]="searchTerm" (keyup.enter)="applyFilters()"
+        aria-label="Search products" />
+      <button pButton type="button" label="Search" (click)="applyFilters()" class="search-button"></button>
+    </div>
+
+    <!-- Active Filters Feedback -->
+    <div class="active-filters-container" *ngIf="hasActiveFilters()">
+      <div class="active-filters">
+        <span>Active Filters:</span>
+
+        <ng-container *ngIf="searchTerm">
+          <span class="filter-tag">
+            Search: "{{ searchTerm }}"
+            <button (click)="clearSearch()" aria-label="Clear search">×</button>
+          </span>
+        </ng-container>
+
+        <ng-container *ngFor="let brand of brandsFiltered">
+          <span class="filter-tag">
+            Brand: {{ brand }}
+            <button (click)="removeFilter('brand', brand)" aria-label="Remove brand filter">×</button>
+          </span>
+        </ng-container>
+
+        <ng-container *ngFor="let color of colorsFiltered">
+          <span class="filter-tag">
+            Color: {{ color }}
+            <button (click)="removeFilter('color', color)" aria-label="Remove color filter">×</button>
+          </span>
+        </ng-container>
+
+        <ng-container *ngFor="let type of typesFiltered">
+          <span class="filter-tag">
+            Type: {{ type }}
+            <button (click)="removeFilter('type', type)" aria-label="Remove type filter">×</button>
+          </span>
+        </ng-container>
+
+        <span *ngIf="maxPrice !== defaultMaxPrice" class="filter-chip">
+          <span class="filter-tag">
+            Max Price: {{ maxPrice }} $
+            <button (click)="resetPrice()">×</button>
+          </span>
+        </span>
+
+
+        <button class="clear-all-btn" (click)="clearAllFilters()">Clear All</button>
+      </div>
+    </div>
+
+    <div class="product-list-header">
+      <h2 class="product-list-heading">All Products</h2>
+
+      <div class="view-toggle-buttons">
+
+        <!-- Filter Toggle Icon: Only on Mobile -->
+
+        <button class="filter-toggle-icon" (click)="toggleFilters()" aria-label="Toggle filters" *ngIf="isMobile">
+          <i class="pi pi-filter"></i>
+        </button>
+
+
+
+
+        <button pButton [icon]="'pi pi-bars'" [class]="viewMode === 'list' ? 'p-button-primary' : 'p-button-outlined'"
+          (click)="toggleView('list')">
+        </button>
+
+        <button pButton [icon]="'pi pi-th-large'"
+          [class]="viewMode === 'grid' ? 'p-button-primary' : 'p-button-outlined'" (click)="toggleView('grid')">
+        </button>
+
+
+      </div>
+    </div>
+
+    <!-- List View -->
+    <div *ngIf="viewMode === 'list'">
+      <app-product-item *ngFor="let product of products" [product]="product"
+        [selectedColorName]="colorsFiltered.length === 1 ? colorsFiltered[0] : undefined">
+      </app-product-item>
+    </div>
+
+    <!-- Grid View -->
+    <div *ngIf="viewMode === 'grid'" class="product-grid">
+      <app-product-grid-item *ngFor="let product of products" [product]="product"
+        [selectedColorName]="colorsFiltered.length === 1 ? colorsFiltered[0] : undefined">
+      </app-product-grid-item>
+
+    </div>
+
+    <div *ngIf="products.length === 0 && !isLoading" class="no-results-message">
+      <p>No products found matching your filters</p>
+    </div>
+
+
+    <!-- Loading Indicator-->
+    <div *ngIf="isLoading" class="loading-indicator">
+      <span class="spinner"></span>
+    </div>
+
+  </div>
+
+
+</div>

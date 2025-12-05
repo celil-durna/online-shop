@@ -1,0 +1,74 @@
+<div class="product-detail-wrapper">
+  <a class="back-link" (click)="goBack()">&#8592; All Products</a>
+</div>
+
+<div *ngIf="product" class="product-detail-container">
+
+  <!-- Image -->
+  <div class="product-image-section" (mouseenter)="showZoomIcon = true" (mouseleave)="showZoomIcon = false">
+    <img class="product-image" [src]="'./assets/products/images/' + selectedColorId + '.webp'" [alt]="product.name">
+
+    <!-- Zoom icon on hover -->
+    <button *ngIf="showZoomIcon" class="zoom-button" (click)="openModal()">
+      <i class="pi pi-search"></i>
+    </button>
+  </div>
+
+  <!-- Info -->
+  <div class="product-info-section">
+    <p class="product-brand">{{ product.brand }}</p>
+    <h1 class="product-title">{{ product.name }}</h1>
+    <p class="product-price">{{ product.price | currency }}</p>
+
+    <div class="horizontal-divider"></div>
+
+    <div class="product-color">
+      <label>Colors</label>
+      <div class="color-swatch" *ngFor="let color of product.colors" [style.backgroundColor]="color.color_hex"
+        [ngClass]="getColorClasses(color.color_id)" (click)="selectColor(color.color_id)">
+      </div>
+
+    </div>
+
+    <div class="product-size">
+      <label>Sizes</label>
+      <span *ngFor="let size of product.sizes" class="size-badge" [ngClass]="getSizeClasses(size)"
+        (click)="selectSize(size)">
+       {{ size }}
+      </span>
+
+
+    </div>
+
+    <div class="product-description">
+      <label>Description</label>
+      <p>This is a versatile and stylish piece designed for comfort and performance.</p>
+    </div>
+
+    <button class="add-to-cart-button" [ngClass]="{ 'disabled': !canAddToCart() }" (click)="tryAddToCart()">
+        <i class="pi pi-shopping-cart" style="margin-right: 0.5rem;"></i>
+      Add to Cart
+
+    </button>
+
+    <!-- Feedback for missing  selected size or color -->
+    <p *ngIf="showSelectionWarning" class="warning-text">
+      Please select a color and size.
+    </p>
+
+    <!-- Feedback for success -->
+    <p *ngIf="addedToCart" class="add-feedback">
+      Product successfully added to cart.
+    </p>
+
+
+  </div>
+</div>
+
+<!-- Modal for zoomed image -->
+<div class="modal-backdrop" *ngIf="modalOpen" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="closeModal()">&#10005;</button>
+    <img class="zoomed-image" [src]="'./assets/products/images/' + product.id + '.webp'" [alt]="product.name">
+  </div>
+</div>

@@ -1,0 +1,308 @@
+<div class="center-container">
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  
+
+    <div>
+      <p><small>Fields marked * are required</small></p>
+    </div>
+    
+
+
+    <!-- First Block (Name) -->
+    <div class="block">
+  
+      <p><strong>Name</strong></p>
+      
+
+      <!-- Gender -->
+      <!-- inputId for connecting button with label, so you can also click at label -->
+      <!-- value defines what will be saved when the radio button is selected -->
+      <!-- formControlName links the radio button to the corresponding field in the Angular form -->
+      <div class="gender">
+
+        <div>
+          <p-radioButton
+            inputId="mr"
+            value="Mr"
+            formControlName="gender"
+          >
+          </p-radioButton>
+          <label for="mr">Mr.</label>
+        </div>
+      
+        <div>
+          <p-radioButton
+            inputId="mrs"
+            value="Mrs"
+            formControlName="gender"
+          >
+          </p-radioButton>
+          <label for="mrs">Mrs.</label>
+        </div>
+      
+        <div>
+          <p-radioButton
+            inputId="other"
+            value="Other"
+            formControlName="gender"
+          >
+          </p-radioButton>
+
+          <!-- Case if you fill in other gender -->
+          <p-floatLabel>
+            <input
+              pInputText
+              id="otherGender"
+              formControlName="otherGender"
+            >
+            <label for="otherGender">Other</label>
+          </p-floatLabel>
+        </div>
+
+      </div>
+  
+
+      <!-- First and Last Name -->
+      <div class="row">
+
+        <!-- First Name -->
+        <div class="row-input">
+          <p-floatLabel>
+            <input pInputText type="text" id="firstName" formControlName="firstName" required>
+            <label for="firstName">* First name</label>
+          </p-floatLabel>
+
+          <!-- error message -->
+          <div *ngIf="registerForm.get('firstName')!.invalid && registerForm.get('firstName')!.touched" class="error-message">
+            <small>You have to enter your first name</small>
+          </div>
+        </div>
+      
+        <!-- Last Name -->
+        <div class="row-input">
+          <p-floatLabel>
+            <input pInputText type="text" id="lastName" formControlName="lastName" required>
+            <label for="lastName">* Last name</label>
+          </p-floatLabel>
+
+          <!-- error message -->
+          <div *ngIf="registerForm.get('lastName')!.invalid && registerForm.get('lastName')!.touched" class="error-message">
+            <small>You have to enter your last name</small>
+          </div>
+        </div>
+
+      </div>
+   
+
+      <!-- Email and Password -->
+      <div class="row">
+
+        <!-- Email -->
+        <div class="row-input">
+          <p-floatLabel>
+            <input pInputText type="email" id="email" formControlName="email" required>
+            <label for="email">* Email</label>
+          </p-floatLabel>
+
+          <!-- error message -->
+          <div *ngIf="registerForm.get('email')!.invalid && registerForm.get('email')!.touched" class="error-message">
+            <small *ngIf="registerForm.get('email')!.errors?.['required']">You have to enter your email</small>
+            <small *ngIf="registerForm.get('email')!.errors?.['email']">You have to enter a valid email</small>
+          </div>
+          
+          <div class="description">
+            <small>You will use your email to log in to the store.</small>
+          </div>
+        </div>
+    
+        <!-- Password -->
+        <div class="row-input">
+          <p-floatLabel>
+            <input pInputText type="password" id="password" formControlName="password" required>
+            <label for="password">* Password</label>
+          </p-floatLabel>
+
+          <!-- error message -->
+          <div *ngIf="registerForm.get('password')!.invalid && registerForm.get('password')!.touched" class="error-message">
+            <small *ngIf="registerForm.get('password')!.errors?.['required']">You have to enter a password</small>
+            <small *ngIf="registerForm.get('password')!.errors?.['minlength']">Password must be at least 8 characters long</small>
+          </div>
+
+          <div class="description">
+            <small>Your password needs at least 8 characters.</small>
+          </div>
+        </div>
+  
+      </div>
+  
+    </div>
+
+
+
+    <!-- Second Block (Birthdate) -->
+    <div class="block">
+    
+      <p><strong>Birthdate</strong></p>
+    
+      <div class="birth-date">
+        <p-floatLabel>
+          <p-calendar
+            inputId="birthdate"
+            formControlName="birthdate"
+            [showIcon]="true"
+            dateFormat="dd.mm.yy"
+          >
+          </p-calendar>
+          <label for="birthdate">* Birthdate</label>
+        </p-floatLabel>
+
+        <!-- error message -->
+        <!-- I just use the following validation because in combination with p-calender its already sufficient.
+             If the user does not use the calender and fill the birthday by him-/herself, then its possible that the
+             user fill in an invalid birthdate (= not in 'DD.MM.YYYY' format). But it will then be deleted automatically. 
+             Thats why the error message "Please enter your birthdate" is sufficient and we dont need something like 
+             "Please enter a valid birthdate". 
+             In most cases, users will use the calendar anyway, and mistakes can't really happen unless the user completely 
+             forgets to enter their birthday. And then the message "Please enter your birthdate" is again sufficient"-->
+        <div *ngIf="registerForm.get('birthdate')!.invalid && registerForm.get('birthdate')!.touched" class="error-message">
+          <small>Please enter your birthdate</small>
+        </div>
+
+        <div class="description">
+          <small>Please enter your birthdate in the format 'DD.MM.YYYY'</small>
+        </div>
+      </div>
+    
+    </div>
+
+  
+
+    <!-- Third Block (Adress) -->
+    <div class="block">
+
+      <p><strong>Adress</strong></p>
+
+      <!-- Street and Number -->
+      <div class="row">
+
+        <!-- Street -->
+        <div class="row-input">
+          <p-floatLabel>
+            <input pInputText type="text" id="street" formControlName="street" required>
+            <label for="street">* Street</label>
+          </p-floatLabel>
+
+          <!-- error message -->
+          <div *ngIf="registerForm.get('street')!.invalid && registerForm.get('street')!.touched" class="error-message">
+            <small>Please enter your street</small>
+          </div>
+        </div>
+    
+        <!-- Number -->
+        <div class="row-input">
+          <p-floatLabel>
+            <input pInputText type="number" id="number" formControlName="number" required>
+            <label for="number">* No.</label>
+          </p-floatLabel>
+
+          <!-- error message -->
+          <!-- The error message "Please enter your street number" is sufficient because we can just enter
+               numbers due to type="number" -->
+          <div *ngIf="registerForm.get('number')!.invalid && registerForm.get('number')!.touched" class="error-message">
+            <small *ngIf="registerForm.get('number')!.errors?.['required']">Please enter your street number</small>
+            <small *ngIf="registerForm.get('number')!.errors?.['pattern']">Street number must be a number</small>
+          </div>
+        </div>
+
+      </div>
+  
+
+      <!-- Postal Code and City -->
+      <div class="row">
+
+        <!-- Postal Code -->
+        <div class="row-input">
+          <p-floatLabel>
+            <input pInputText type="number" id="postalCode" formControlName="postalCode" required>
+            <label for="postalCode">* Postal Code</label>
+          </p-floatLabel>
+
+          <!-- error message -->
+          <!-- The following error message is sufficient because we can just enter numbers due to type="number" -->
+          <div *ngIf="registerForm.get('postalCode')!.invalid && registerForm.get('postalCode')!.touched" class="error-message">
+            <small>Please enter your postal code</small>
+          </div>
+        </div>
+  
+        <!-- City -->
+        <div class="row-input">
+          <p-floatLabel>
+            <input pInputText type="text" id="city" formControlName="city" required>
+            <label for="city">* City</label>
+          </p-floatLabel>
+
+          <!-- error message -->
+          <div *ngIf="registerForm.get('city')!.invalid && registerForm.get('city')!.touched" class="error-message">
+            <small>Please enter your city</small>
+          </div>
+        </div>
+
+      </div>
+  
+      
+      <!-- Country -->
+      <div class="country">
+        <p-floatLabel>
+          <p-dropdown
+            inputId="country"
+            formControlName="country"
+            [options]="countries"
+            optionLabel="name"
+            [showClear]="true"
+          >
+          </p-dropdown>
+          
+          <!--
+            Dynamically add the class 'suppress-float' only if no country is selected yet
+            If the country field is empty -> add 'suppress-float' to keep the label centered
+            If a country is selected -> remove 'suppress-float' so that the label floats normally above
+            This ensures that the country field looks consistent with the other input fields
+          -->
+          <label
+            for="country"
+            [class.suppress-float]="!registerForm.get('country')?.value"
+          >
+            * Country
+          </label>
+        </p-floatLabel>
+
+        <!-- error message -->
+        <div *ngIf="registerForm.get('country')!.invalid && registerForm.get('country')!.touched" class="error-message">
+          <small>Please enter your country</small>
+        </div>
+      </div>
+  
+      <br>
+
+      <small class="description">Your address will be used as the default shipping address.</small>
+
+    </div>
+  
+
+
+    <!-- Button -->
+    <div class="button-container">
+      <button
+        pButton
+        pRipple
+        type="submit"
+        id="register-button"
+        label="Submit"
+      >
+      </button>
+    </div>
+
+  </form>
+
+</div>

@@ -1,0 +1,264 @@
+.cart-page {
+  max-width: 1000px;
+  margin: 4rem auto;
+}
+
+.cart-header {
+  margin-bottom: 2rem;
+}
+
+.cart-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.cart-item {
+  display: flex;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 10px;
+  position: relative;
+}
+
+.cart-image img {
+  width: 110px;
+  height: 160px;
+  object-fit: contain;
+  margin-right: 1rem;
+  margin-left: 2rem;
+}
+
+.cart-details {
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-title {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.cart-title:hover {
+  text-decoration: underline;
+}
+
+.cart-brand {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 0;
+  margin-bottom: 0.1rem;
+}
+
+.cart-price {
+  font-size: 1.1rem;
+  color: #478af6;
+  font-weight: 400;
+  background-color: #eff6ff;          
+  border: 0.5px solid #bfdbfe;                
+  padding: 0.12rem 0.4rem;
+  border-radius: 8px;               
+  display: inline-block;          
+  box-shadow: 0 0 0 1px #b0cde5;   
+  width: fit-content;   
+  margin-bottom: 0.1rem;
+}
+
+.cart-size {
+  font-size: 1.1rem;
+  color: #444;
+}
+
+.cart-quantity {
+  position: absolute;
+  right: 2.3rem;
+  top: 50%;                   /* for centrality  */
+  transform: translateY(-50%); /* for centrality */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+}
+
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid #bebbbb;
+  border-radius: 999px; 
+  overflow: hidden;
+  background-color: white;
+  height: 50px;
+}
+
+.quantity-controls button {
+  background: none;
+  border: none;
+  padding: 0 16px;
+  font-size: 1.8rem;
+  height: 100%;
+}
+
+.quantity-controls span {
+  font-size: 1.8rem;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.remove-icon {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-icon i {
+  font-size: 1.8rem;  
+  color: #d32f2f;
+}
+
+
+
+.cart-summary {
+  text-align: center;
+  margin: 2rem auto;
+  padding: 1rem 2rem 2rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  background-color: #f9f9f9;
+  max-width: 350px;   
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.summary-row .label {
+  min-width: 120px; 
+}
+
+.summary-divider {
+  border-top: 1px solid #ccc;
+  margin: 1rem 0;
+}
+
+.summary-total {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+
+
+.summary-total small {
+  font-weight: normal;
+  font-size: 0.8rem;
+  color: #666;
+  display: block;
+}
+
+.cart-checkout {
+  background-color: #2a7ae2;
+  color: white;
+  padding: 0.7rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 100%; 
+  max-width: 220px; 
+  margin-top: 1rem;
+}
+
+.cart-checkout:hover {
+  background-color: #1a5bb8;
+}
+
+.summary-label {
+  flex: 1;
+  text-align: left;
+}
+
+.summary-row span:last-child {
+  text-align: right;
+  flex: 0 0 auto;
+  padding-left: 2rem;
+}
+
+
+
+
+@media (max-width: 750px) {
+
+  .cart-header h2 {
+    padding-left: 1rem; 
+  }
+
+  .cart-item {
+    flex-direction: row; 
+    align-items: center;
+    padding: 0.8rem; /* maybe without better */
+    margin: 0 1rem; 
+    border-radius: 10px;
+  }
+
+  .cart-image img {
+    width: 70px;
+    height: auto;
+    margin: 0 0rem 0 0;
+  }
+
+  .cart-details {
+    padding-left: 1rem;
+    flex: 1; 
+  }
+
+  .cart-title {
+    font-size: 1rem;
+    margin: 0.2rem 0;
+  }
+
+  .cart-brand,
+  .cart-size,
+  .cart-price {
+    font-size: 0.9rem;
+  }
+
+  .cart-quantity {
+    position: static;
+    transform: none;
+    margin-left: auto;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .quantity-controls {
+    height: 45px;
+  }
+
+  .quantity-controls button,
+  .quantity-controls span {
+    font-size: 1.3rem;
+    padding: 0 10px;
+  }
+
+  .remove-icon i {
+    font-size: 1.4rem;
+  }
+
+  .cart-summary {
+    max-width: 100%;
+    padding: 1rem;
+  }
+  
+}

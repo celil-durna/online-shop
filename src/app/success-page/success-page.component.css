@@ -1,0 +1,107 @@
+.success-container {
+  max-width: 600px;
+  margin: 5rem auto;
+  padding: 2rem;
+  text-align: center;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.189);
+}
+
+.success-icon {
+  font-size: 4rem;
+  color: #2a7ae2;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #2a2a2a;
+}
+
+.success-message {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.back-to-shop-button {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background-color: #2a7ae2;
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem,;
+}
+
+.back-to-shop-button:hover {
+  background-color: #1e5fc5;
+}
+
+
+
+/*
+for VERY wide screens (3340px) 
+*/
+@media (min-width: 161rem) {
+
+  .success-container {
+    max-width: 1100px;
+    padding: 5rem;
+  }
+
+  .success-icon {
+    font-size: 7rem;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  .success-message {
+    font-size: 2rem;
+  }
+
+  .back-to-shop-button {
+    font-size: 2.3rem;
+    padding: 0.85rem 2.2rem;
+    border-radius: 13px;
+  }
+  
+}
+
+
+/*
+for narrow widths (375px iphone SE) 
+*/
+@media (max-width: 750px) {
+  
+  .success-container {
+    margin: 2rem 1rem;
+    padding: 1.5rem 1rem;
+    border-radius: 8px;
+  }
+
+  .success-icon {
+    font-size: 3.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .success-message {
+    font-size: 1rem;
+  }
+
+  .back-to-shop-button {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+}

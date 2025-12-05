@@ -1,0 +1,141 @@
+.product-grid-item {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  height: 100%;
+}
+
+.product-grid-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.grid-image {
+  width: 100%;
+  max-width: 140px;
+  height: 140px;
+  object-fit: contain;
+  margin-bottom: 0.8rem;
+}
+
+.horizontal-divider {
+  height: 1px;
+  width: 100%;
+  background-color: #ccc;
+  margin: 0.5rem 0;
+}
+
+.grid-info {
+  text-align: center;
+  width: 100%;
+  max-width: 180px;
+}
+
+.grid-brand {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.2rem;
+}
+
+.grid-name {
+  font-size: 1.05rem;
+  font-weight: 500;
+  min-height: 2.2rem;
+  /* Reserve height for 2 lines */
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.grid-price {
+  font-size: 0.95rem;
+  color: #478af6;
+  font-weight: 500;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px #b0cde5;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .product-grid-item {
+    padding: 0.4rem;
+    height: 210px;
+    max-height: 210px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .grid-image {
+    width: 100%;
+    max-width: 90px;
+    height: 90px;
+    object-fit: contain;
+    margin-bottom: 0.3rem;
+  }
+
+  .horizontal-divider {
+    height: 1px;
+    width: 100%;
+    background-color: #ddd;
+    margin: 0.3rem 0;
+  }
+
+  .grid-info {
+    text-align: center;
+    width: 100%;
+    max-width: 130px;
+  }
+
+  .grid-brand {
+    font-size: 0.7rem;
+    margin: 0.1rem 0;
+    margin-bottom: 0.2rem
+  }
+
+  .grid-name {
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0.1rem 0;
+    height: 1.6rem;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .grid-price {
+    font-size: 0.75rem;
+    padding: 0.1rem 0.4rem;
+    margin-top: 0.2rem;
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 5px;
+    display: inline-block;
+    box-shadow: 0 0 0 1px #b0cde5;
+  }
+}

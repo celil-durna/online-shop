@@ -1,0 +1,178 @@
+/* Container for the whole menubar. Contains styling (color, border, ...) */
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--p-primary-50);
+  height: 5rem;
+  border: 1px solid var(--p-content-border-color);
+}
+
+/* Container for all menubar contents (Logo + Buttons) */
+.menu {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Logo CSS. We assemble the logo from the SVG and HTML text */
+#logo {
+  display: flex;
+  align-items: center;
+  color: none;
+}
+
+#title {
+  font-size: 1.4rem;
+  color: black;
+  font-weight: 500;
+}
+
+#logo-img {
+  width: 4rem;
+  margin-right: 0px;
+}
+
+/* Container for right-aligned button(s) in the menubar */
+.menu-entries {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 10px;
+}
+
+/*
+Use the combination of :host and ::ng-deep to adapt PrimeNG styles
+See https://angular.dev/guide/components/styling#viewencapsulationemulated for more info
+Alternatively, use PrimeNG's scoped design tokens. See https://primeng.org/theming#scopedtokens
+*/
+:host ::ng-deep .p-button-label {
+  font-weight: normal;
+}
+
+
+
+/* by default: show label buttons (for desktop view) */
+.desktop-only {
+  display: inline-flex;
+}
+
+/* ny default: hide icon-only buttons (for mobile view) */
+.mobile-only {
+  display: none;
+}
+
+/* important because without it, we would have more space on the right when there is the batch than without the batch */
+.invisible {
+  visibility: hidden;
+}
+
+
+
+/*
+Set a max width on wide screens (1920px)
+For more info, see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries
+*/
+@media (min-width: 72rem) {
+  .menu {
+    width: 80rem;
+  }
+}
+
+
+/*
+Set a max width on VERY wide screens (3340px) 
+*/
+@media (min-width: 161rem) {
+  .menu {
+    width: 169rem;
+  }
+}
+
+
+/*
+for narrow widths (375px iphone SE) 
+*/
+@media (max-width: 750px) {
+
+  .menu {
+    padding-left: 0.4rem;
+  }
+
+  #logo-img {
+    width: 3.5rem;
+  }
+
+  #title {
+    font-size: 1.3rem;
+  }
+
+  .menu-entries {
+    gap: 0.9rem;
+  }
+
+  /* dont show labels for buttons */
+  .desktop-only {
+    display: none;
+  }
+
+  /* just show icons for the buttons */
+  .mobile-only {
+    display: inline-flex;
+    height: 43px;
+    width: 43px;
+    padding: 1 !important;
+  }
+
+
+  /* adjust sizes of buttons for mobile view */
+  :host ::ng-deep .mobile-only .p-button {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0.3rem !important;
+    justify-content: center; /* maybe no needed */
+  }
+  
+  :host ::ng-deep .mobile-only .pi {
+    font-size: 0.9rem !important; /* default was 1rem */
+  }
+
+}
+
+
+
+/* Assignment 7 -> Cart Badge */
+
+/* batch for desktop view */
+.cart-badge-desktop {
+  position:relative;
+
+  top: -10px;
+  right: 75px;
+
+  background-color: #478af6;
+  color: white;
+  font-size: 0.5rem;
+  padding: 2px 6px;
+  border-radius: 999px;
+
+  width: 17px;
+  height: 14px;
+}
+
+/* adjust position and size a little bit for mobile view */
+.cart-badge-mobile {
+  position:relative;
+
+  top: -10px;
+  right: 35px;
+
+  background-color: #478af6;
+  color: white;
+  font-size: 0.5rem;
+  padding: 1.5px 4.5px;
+  border-radius: 999px;
+
+  width: 14px;
+  height: 13px;
+}

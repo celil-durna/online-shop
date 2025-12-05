@@ -1,0 +1,72 @@
+<div class="cart-page">
+
+  <div class="cart-header">
+    <h2>Your Shopping Cart</h2>
+  </div>
+
+  <div *ngIf="cartItems.length > 0; else emptyCart" class="cart-content">
+
+    <div class="cart-item" *ngFor="let item of cartItems">
+
+      <div [routerLink]="['/products', item.id]" class="cart-image">
+        <img [src]="getProductImage(item.color)" alt="Product image" />
+      </div>
+
+      <div class="cart-details">
+        <!-- 
+        (If the product metadata has not loaded yet, '...' is shown as a placeholder 
+        to keep the UI from looking broken or empty)
+        -->
+        <a [routerLink]="['/products', item.id]" class="cart-title">
+          {{ getProduct(item.id)?.name || '...' }}
+        </a>
+        <p class="cart-brand">{{ getProduct(item.id)?.brand }}</p>
+        <p class="cart-price">{{ getProduct(item.id)?.price | currency:'USD':'symbol' }}</p>
+        <p class="cart-size">Size: {{ item.size }}</p>
+      </div>
+
+      <div class="cart-quantity">
+
+        <div class="quantity-controls" >
+          <button (click)="decreaseQuantity(item)">−</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="increaseQuantity(item)">+</button>
+        </div>
+
+         <button (click)="removeItem(item)" class="remove-icon">
+             <i class="pi pi-trash"></i>
+         </button>
+
+      </div>
+ 
+    </div>
+
+    <div class="cart-summary">
+
+      <div class="summary-row">
+        <span class="summary-label label">Subtotal</span>
+        <span>{{ getTotalPrice() | currency:'USD':'symbol' }}</span>
+      </div>
+       
+      <div class="summary-row">
+        <span class="summary-label label">Shipping</span>
+        <span>{{ shippingFee | currency:'USD':'symbol' }}</span>
+      </div>
+     
+      <div class="summary-divider"></div>
+     
+      <div class="summary-row summary-total">
+        <span class="summary-label label"><strong>Total</strong></span>
+        <strong>{{ getTotalPriceWithShipping() | currency:'USD':'symbol' }}</strong>
+      </div>
+     
+       <button [routerLink]="['/checkout']" class="cart-checkout">Checkout</button>
+    </div>
+
+  </div>
+
+  <ng-template #emptyCart>
+    <p class="empty-cart-text">Your cart is empty.</p>
+  </ng-template>
+
+</div>
