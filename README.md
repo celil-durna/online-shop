@@ -98,6 +98,38 @@ Responsiveness was implemented for the parts specified in the course: **header**
 
 ---
 
+## My contributions
+
+### Header 
+- Implemented the header navigation (shop logo/name and buttons for login, registration, and cart)
+
+### Login & registration 
+- Implemented the complete login and registration pages
+- Added a structured form layout with validation and clear error messages / user feedback
+
+### Product overview
+- Implemented the grid view for the products overview, including the product cards (image, name, brand, price)
+- Implemented "load on scroll" with loading indicator
+
+### Shopping cart 
+- Implemented the complete shopping cart page (quantity control, remove, total price)
+- Ensured the cart is saved across page reloads 
+
+### Checkout
+- Implemented the complete checkout wizard, including step logic, validation, and step navigation
+- **Address:** pre-filled, editable address form with clear error messages
+- **Delivery & Payment:** selectable shipping and payment options
+- **Summary:** edit-back options, price overview (subtotal, shipping cost, total), and order confirmation (clears cart)
+- Implemented the success page after completing checkout
+
+### Responsive design
+- Made the header responsive
+- Made login & registration responsive
+- Made the complete checkout process responsive (wizard and success page)
+
+
+---
+
 ## Requirements to run the website
 
 To run the website locally you need to install the following tool:
@@ -135,35 +167,3 @@ npm start
 ### 6) How to stop the website
 
 - Press `Ctrl + C` 
-
-
----
-
-## My contributions
-
-### Header 
-- Implemented the header navigation (shop logo/name and buttons for login, registration, and cart)
-
-### Login & registration 
-- Implemented the complete login and registration pages
-- Added a structured form layout with validation and clear error messages / user feedback
-
-### Product overview
-- Implemented the grid view for the products overview, including the product cards (image, name, brand, price)
-- Implemented "load on scroll" with loading indicator
-
-### Shopping cart 
-- Implemented the complete shopping cart page (quantity control, remove, total price)
-- Ensured the cart is saved across page reloads 
-
-### Checkout
-- Implemented the complete checkout wizard, including step logic, validation, and step navigation
-- **Address:** pre-filled, editable address form with clear error messages
-- **Delivery & Payment:** selectable shipping and payment options
-- **Summary:** edit-back options, price overview (subtotal, shipping cost, total), and order confirmation (clears cart)
-- Implemented the success page after completing checkout
-
-### Responsive design
-- Made the header responsive
-- Made login & registration responsive
-- Made the complete checkout process responsive (wizard and success page)
