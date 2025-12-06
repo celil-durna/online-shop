@@ -41,9 +41,9 @@ This README provides the key features of the project, describes the technologies
 
 1. [Key features](#key-features)  
 2. [Tech stack](#tech-stack)  
-3. [Requirements to run the website](#requirements-to-run-the-website)  
-4. [How to run the website](#how-to-run-the-website)
-5. [My contributions](#my-contributions)
+3. [My contributions](#my-contributions)
+4. [Requirements to run the website](#requirements-to-run-the-website)  
+5. [How to run the website](#how-to-run-the-website)
 
 
 ---
